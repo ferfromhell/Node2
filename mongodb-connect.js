@@ -8,15 +8,15 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
     }
     console.log('Connected to MongoDB server');
     const db = client.db('TodoApp');
-    // db.collection('Todos').insertOne({
-    //     text : 'Walk the dog', 
-    //     completed : 'False'
-    // },(err,result)=>{
-    //     if(err){
-    //         return console.log('Unable to insert todo', err);
-    //       }
-    //       console.log(JSON.stringify(result.ops, undefined, 2));
-    // });
+    db.collection('Todos').insertOne({
+        text : 'Delete me', 
+        completed : 'False'
+    },(err,result)=>{
+        if(err){
+            return console.log('Unable to insert todo', err);
+          }
+          console.log(JSON.stringify(result.ops, undefined, 2));
+    });
     // db.collection('Users').insertOne({
     //     name: 'Fer',
     //     age: 30,
@@ -27,11 +27,5 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
     //       }
     //       console.log(JSON.stringify(result.ops, undefined, 2));
     // });
-    db.collection('Todos').find({}).count().then((count) => {
-        console.log(`Todos: ${count}`);
-        //console.log(JSON.stringify(docs,undefined,2));
-    },(err) => {
-        console.log('Unable to fetch todos',err);
-    });
     client.close();
 });
